@@ -1,0 +1,17 @@
+<azkaban-users>
+        <user username="admin" password="vlemtjqj" roles="admin" groups="admin,global,china"/>
+
+        <user username="global-admin" password="vlemtjqj" groups="global"/>
+        <user username="global-app" password="vlemtjqj" groups="global"/>
+        <user username="global-user" password="vlemtjqj" groups="global"/>
+        <user username="china-admin" password="vlemtjqj" groups="china"/>
+        <user username="china-app" password="vlemtjqj" groups="china"/>
+        <user username="china-user" password="vlemtjqj" groups="china"/>
+        
+        <group name="admin" />
+        <group name="global" />
+        <group name="china" />
+
+        <role name="admin" permissions="ADMIN" />
+
+</azkaban-users>
