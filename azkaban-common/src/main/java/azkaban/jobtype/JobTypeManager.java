@@ -349,6 +349,17 @@ public class JobTypeManager {
           }
         }
       }
+      
+      // BUG_FIX: add common properties
+      Props commonJobProps = pluginSet.getCommonPluginJobProps();
+      if (commonJobProps != null) {
+        for (String k : commonJobProps.getKeySet()) {
+          if (!jobProps.containsKey(k)) {
+            jobProps.put(k, commonJobProps.get(k));
+          }
+        }
+      }
+      
       jobProps = PropsUtils.resolveProps(jobProps);
 
       Props pluginLoadProps = pluginSet.getPluginLoaderProps(jobType);
