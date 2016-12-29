@@ -22,7 +22,7 @@ ENV MYSQL_PASSWORD	azkaban
 
 ## Install Azkaban web server ################################
 
-ENV AZK_VERSION 3.1.0
+#ENV AZK_VERSION 3.1.0 (inject at build time)
 ENV MYSQL_JDBC_VERSION 5.1.35
 
 ENV AZK_HOME /home/azkaban-web-server
