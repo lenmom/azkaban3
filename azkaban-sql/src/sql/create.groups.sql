@@ -1,0 +1,5 @@
+CREATE TABLE groups (
+	name VARCHAR(64) NOT NULL,
+	roles VARCHAR(128) DEFAULT NULL,
+	PRIMARY KEY (name)
+);
