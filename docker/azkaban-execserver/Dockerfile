@@ -20,10 +20,12 @@ ENV MYSQL_PASSWORD	azkaban
 
 ## Install Azkaban exec server ################################
 
+ARG AZK_VERSION
+ENV AZK_VERSION ${AZK_VERSION:-3.1.0}
 ENV AZK_HOME /home/azkaban-exec-server
 
-ADD dist/azkaban-exec-server-*.tar.gz /
-RUN mv /azkaban-exec-server-* $AZK_HOME
+ADD dist/azkaban-exec-server-${AZK_VERSION}.tar.gz /
+RUN mv /azkaban-exec-server-${AZK_VERSION} $AZK_HOME
 
 RUN mkdir -p $AZK_HOME/logs/ \
     && mkdir -p $AZK_HOME/conf/ \

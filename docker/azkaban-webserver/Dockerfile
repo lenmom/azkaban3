@@ -22,10 +22,12 @@ ENV MYSQL_PASSWORD	azkaban
 
 ## Install Azkaban web server ################################
 
+ARG AZK_VERSION
+ENV AZK_VERSION ${AZK_VERSION:-3.1.0}
 ENV AZK_HOME /home/azkaban-web-server
 
-ADD dist/azkaban-web-server-*.tar.gz /
-RUN mv /azkaban-web-server-* $AZK_HOME
+ADD dist/azkaban-web-server-${AZK_VERSION}.tar.gz /
+RUN mv /azkaban-web-server-${AZK_VERSION} $AZK_HOME
 
 RUN mkdir -p $AZK_HOME/logs/ \
     && mkdir -p $AZK_HOME/conf/ \
