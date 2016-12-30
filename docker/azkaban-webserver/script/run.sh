@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 ## Run azkaban exec server ####################################
@@ -12,9 +12,8 @@ change_properties() {
     local value=$3
     if [ ! -z "$value" ]; then
         echo "change : $key_name=$value ($file)"
-        cmd=`sed -i -e '/$key_name=/s/=.*/=$value/' $file`
-        eval $cmd
-   fi
+        eval "sed -i -e '/$key_name=/s/=.*/=$value/' $file"
+    fi
 }
 
 change_properties $AZK_PROPERTIES 'azkaban.name' $AZK_NAME

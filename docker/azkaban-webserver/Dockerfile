@@ -37,7 +37,6 @@ RUN mkdir -p $AZK_HOME/logs/ \
 
 ADD dist/mysql-connector-java-*.jar $AZK_HOME/extlib/
 ADD conf/azkaban.properties $AZK_HOME/conf/
-ADD conf/azkaban-users.xml $AZK_HOME/conf/
 
 EXPOSE 8081
 

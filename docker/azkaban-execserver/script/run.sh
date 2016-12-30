@@ -12,8 +12,7 @@ change_properties() {
     local value=$3
     if [ ! -z "$value" ]; then
         echo "change : $key_name=$value ($file)"
-        cmd=`sed -i -e '/$key_name=/s/=.*/=$value/' $file`
-        eval $cmd
+        eval "sed -i -e '/$key_name=/s/=.*/=$value/' $file"
 	fi
 }
 
@@ -23,10 +22,8 @@ append_properties() {
 	local value=$3
     if [ ! -z "$value" ]; then
         echo "append : $key_name=$value ($file)"
-        cmd=`$echo $key_name=$value >> $file`
-        eval $cmd
+        echo $key_name=$value >> $file
 	fi
-
 }
 
 change_properties $AZK_PROPERTIES 'mysql.host' $MYSQL_HOST
