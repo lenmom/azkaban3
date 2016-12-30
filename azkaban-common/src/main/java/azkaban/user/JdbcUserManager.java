@@ -63,30 +63,38 @@ public class JdbcUserManager extends AbstractJdbcLoader implements UserManager {
     User user = null;
     try {
     	user = runner.query(FetchUser.FETCH_USER, handler, username, password);
-    	if(user != null) {
-    		FetchGroupRoles groupHandler = new FetchGroupRoles();
-    		for(String group: user.getGroups()) {
-    			Set<String> groupRoles = runner.query(FetchGroupRoles.FETCH_GROUP_ROLES, groupHandler, group);
-    			if(groupRoles != null) {
-    				for(String groupRole: groupRoles) {
-    					user.addRole(groupRole);
-    				}
-    			}
-    		}
-
-    		user.setPermissions(new UserPermissions() {
-				@Override
-				public boolean hasPermission(String permission) {
-					return true;
-				}
-				@Override
-				public void addPermission(String permission) {
-				}
-    		});
-    	}
     } catch (SQLException e) {
-    	throw new UserManagerException("Error fetch user " + username);
+    	throw new UserManagerException("Error fetch user from db: " + username);
     }
+    if(user == null) {
+    	throw new UserManagerException("Username/Password not found.");
+    }
+
+    FetchGroupRoles groupHandler = new FetchGroupRoles();
+    for(String group: user.getGroups()) {
+    	Set<String> groupRoles = null;
+    	try {
+    		groupRoles = runner.query(FetchGroupRoles.FETCH_GROUP_ROLES, groupHandler, group);
+    	} catch (SQLException e) {
+    		throw new UserManagerException("Error fetch groupRoles from db: " + group);
+    	}
+    	if(groupRoles != null) {
+    		for(String groupRole: groupRoles) {
+    			user.addRole(groupRole);
+    		}
+    	}
+    }
+
+    user.setPermissions(new UserPermissions() {
+    	@Override
+    	public boolean hasPermission(String permission) {
+    		return true;
+    	}
+    	@Override
+    	public void addPermission(String permission) {
+    	}
+    });
+    
     return user;
   }
 
