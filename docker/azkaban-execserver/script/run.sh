@@ -80,7 +80,7 @@ if [ ! -z "$MYSQL_DATABASE" ]; then
 fi
 
 ## generate global properties from env
-for gp in $(env | grep GP_)
+for gp in $(env)
 do
 	key=${gp%%\=*}
 	value=${gp#*=}
