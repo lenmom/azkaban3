@@ -9,17 +9,6 @@ ENV TERM linux
 ENV INITRD No
 
 
-## Define default runtime ENV #################################
-
-ENV AZK_NAME		Azkaban-Web
-ENV AZK_LABEL		Local
-ENV AZK_COLOR		#FF3061
-ENV MYSQL_HOST		localhost
-ENV MYSQL_PORT		3306
-ENV MYSQL_DB		azkaban
-ENV MYSQL_USER		azkaban
-ENV MYSQL_PASSWORD	azkaban
-
 ## Install Azkaban web server ################################
 
 ARG AZK_VERSION
