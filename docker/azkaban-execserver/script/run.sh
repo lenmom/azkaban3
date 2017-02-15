@@ -85,7 +85,7 @@ do
 	key=${gp%%\=*}
 	value=${gp#*=}
 	key=${key,,}
-	key=${key/_/.}
+	key=${key//_/.}
 	append_properties $GLOBAL_PROPERTIES $key $value
 done
 
