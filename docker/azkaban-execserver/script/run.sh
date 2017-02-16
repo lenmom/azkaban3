@@ -20,10 +20,8 @@ append_properties() {
 	local file=$1
 	local key_name=$2
 	local value=$3
-    if [ ! -z "$value" ]; then
-        echo "append : $key_name=$value ($file)"
-        echo $key_name=$value >> $file
-	fi
+    echo "append : $key_name=$value ($file)"
+    echo $key_name=$value >> $file
 }
 
 ## parse args 
