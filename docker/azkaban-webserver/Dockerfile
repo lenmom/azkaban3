@@ -15,7 +15,8 @@ ARG AZK_VERSION
 ENV AZK_VERSION ${AZK_VERSION:-3.1.0}
 ENV AZK_HOME /home/azkaban-web-server
 
-ADD dist/azkaban-web-server-${AZK_VERSION}.tar.gz /
+COPY dist/azkaban-web-server-${AZK_VERSION}.tar.gz /
+RUN tar xvfz /azkaban-web-server-${AZK_VERSION}.tar.gz
 RUN mv /azkaban-web-server-${AZK_VERSION} $AZK_HOME
 
 RUN mkdir -p $AZK_HOME/logs/ \
