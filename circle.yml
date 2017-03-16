@@ -5,3 +5,7 @@ machine:
 compile:
   override:
     - ./gradlew --stacktrace clean distTar -x test
+
+test:
+  override:
+    - echo "ignore test..."
