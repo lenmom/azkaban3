@@ -7,8 +7,6 @@ machine:
 compile:
   override:
     - ./gradlew --stacktrace clean distTar -x test
-    - ls -al
-    - ls -al build/distributions
     - bash ./build_docker.sh
 test:
   override:
