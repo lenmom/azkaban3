@@ -3,14 +3,11 @@ machine:
     version: oraclejdk8
   services:
     - docker
-  environment:
-    BUILD_VERSION: $(echo '1234')
-    RELEASE_VERSION: $(git describe --tags $(git rev-list --tags --max-count=1))
 
 compile:
   override:
     - ./gradlew --stacktrace clean distTar -x test
-    - ./build_docker.sh
+    - bash ./build_docker.sh
 test:
   override:
     - echo "ignore test..."
