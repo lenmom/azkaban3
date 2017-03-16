@@ -3,12 +3,13 @@ machine:
     version: oraclejdk8
   services:
     - docker
+  environment:
+    - BUILD_VERSION=$(git describe --tags)
+    - RELEASE_VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
 
 compile:
   override:
     - ./gradlew --stacktrace clean distTar -x test
-    - export BUILD_VERSION=$(git describe --tags); echo BUILD_VERSION=${BUILD_VERSION}
-    - export RELEASE_VERSION=$(git describe --tags $(git rev-list --tags --max-count=1)); echo RELEASE_VERSION=${RELEASE_VERSION}
     - cp build/distributions/azkaban-web-server-${BUILD_VERSION}.tar.gz docker/azkaban-webserver/dist/azkaban-web-server-${RELEASE_VERSION}.tar.gz
     - docker build --build-arg AZK_VERSION=${RELEASE_VERSION} -t poporisil/azkaban3-webserver:${RELEASE_VERSION} docker/azkaban-webserver
     - cp build/distributions/azkaban-exec-server-${BUILD_VERSION}.tar.gz docker/azkaban-execserver/dist/azkaban-exec-server-${RELEASE_VERSION}.tar.g
