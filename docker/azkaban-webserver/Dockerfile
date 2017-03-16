@@ -11,13 +11,15 @@ ENV INITRD No
 
 ## Install Azkaban web server ################################
 
-ARG AZK_VERSION
-ENV AZK_VERSION ${AZK_VERSION:-3.1.0}
+ARG PKG_FILE
+ENV PKG_FILE ${PKG_FILE:-azkaban-web-server-3.1.0.tar.gz}
+ARG PKG_NAME
+ENV PKG_NAME ${PKG_NAME:-azkaban-web-server-3.1.0}
+
 ENV AZK_HOME /home/azkaban-web-server
 
-COPY dist/azkaban-web-server-${AZK_VERSION}.tar.gz /
-RUN tar xvfz /azkaban-web-server-${AZK_VERSION}.tar.gz
-RUN mv /azkaban-web-server-${AZK_VERSION} $AZK_HOME
+ADD dist/$PKG_FILE /
+RUN mv /$PKG_NAME $AZK_HOME
 
 RUN mkdir -p $AZK_HOME/logs/ \
     && mkdir -p $AZK_HOME/conf/ \
