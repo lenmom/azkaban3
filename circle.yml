@@ -7,7 +7,7 @@ machine:
 compile:
   override:
     - ./gradlew --stacktrace clean distTar -x test
-    - bash ./build_docker.sh
+    - bash ./docker_build.sh
 test:
   override:
     - echo "ignore test..."
@@ -17,5 +17,4 @@ deployment:
     branch: m1
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push poporisil/azkaban3-webserver
-      - docker push poporisil/azkaban3-execserver
+      - bash ./docker_release.sh
