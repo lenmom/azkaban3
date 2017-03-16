@@ -1,0 +1,7 @@
+machine:
+  java:
+    version: oraclejdk8
+
+compile:
+  override:
+    - gradle --stacktrace clean distTar
