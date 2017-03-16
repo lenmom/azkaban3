@@ -11,8 +11,6 @@ ENV INITRD No
 
 ## Install Azkaban exec server ################################
 
---build-arg PKG_FILE=${PKG_FILE} --build-arg PKG_NAME=${PKG_NAME}
-
 ARG PKG_FILE
 ENV PKG_FILE ${PKG_FILE:-azkaban-exec-server-3.1.0.tar.gz}
 ARG PKG_NAME
