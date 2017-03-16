@@ -4,8 +4,8 @@ machine:
   services:
     - docker
   environment:
-    - BUILD_VERSION=$(git describe --tags)
-    - RELEASE_VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
+    - BUILD_VERSION: $(git describe --tags)
+    - RELEASE_VERSION: $(git describe --tags $(git rev-list --tags --max-count=1))
 
 compile:
   override:
