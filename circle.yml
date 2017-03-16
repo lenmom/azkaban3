@@ -4,4 +4,4 @@ machine:
 
 compile:
   override:
-    - gradle --stacktrace clean distTar
+    - ./gradlew --stacktrace clean distTar
