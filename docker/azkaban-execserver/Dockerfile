@@ -11,13 +11,17 @@ ENV INITRD No
 
 ## Install Azkaban exec server ################################
 
-ARG AZK_VERSION
-ENV AZK_VERSION ${AZK_VERSION:-3.1.0}
+--build-arg PKG_FILE=${PKG_FILE} --build-arg PKG_NAME=${PKG_NAME}
+
+ARG PKG_FILE
+ENV PKG_FILE ${PKG_FILE:-azkaban-exec-server-3.1.0.tar.gz}
+ARG PKG_NAME
+ENV PKG_NAME ${PKG_NAME:-azkaban-exec-server-3.1.0}
+
 ENV AZK_HOME /home/azkaban-exec-server
 
-COPY dist/azkaban-exec-server-${AZK_VERSION}.tar.gz /
-RUN tar xvfz /azkaban-exec-server-${AZK_VERSION}.tar.gz
-RUN mv /azkaban-exec-server-${AZK_VERSION} $AZK_HOME
+ADD dist/$PKG_FILE /
+RUN mv /$PKG_NAME $AZK_HOME
 
 RUN mkdir -p $AZK_HOME/logs/ \
     && mkdir -p $AZK_HOME/conf/ \
