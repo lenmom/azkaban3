@@ -45,6 +45,9 @@ while getopts "$optspec" o; do
 				mysql.database=*)
 					MYSQL_DATABASE=${OPTARG#*=}
 					;;
+				executor.threads=*)
+					EXECUTOR_THREADS=${OPTARG#*=}
+					;;
 				*)
 					if [ "$OPTERR" = 1 ] && [ "${optspec:0:1}" != ":" ]; then
 						echo "Unknown option --${OPTARG}" >&2
@@ -76,6 +79,10 @@ fi
 if [ ! -z "$MYSQL_DATABASE" ]; then
 	change_properties $AZK_PROPERTIES 'mysql.database' $MYSQL_DATABASE
 fi
+if [ ! -z "$EXECUTOR_THREADS" ]; then
+	change_properties $AZK_PROPERTIES 'executor.flow.threads' $EXECUTOR_THREADS
+fi
+
 
 ## generate global properties from env
 for gp in $(env)
