@@ -40,8 +40,8 @@ VOLUME $AZK_HOME/jobs
 
 ADD script/run.sh $AZK_HOME/run.sh
 RUN chmod +x $AZK_HOME/run.sh
-RUN addgroup -S -g 1000 app
-RUN adduser -S -u 1000 -G app app
+RUN addgroup --system --gid 1000 app
+RUN adduser --system --uid 1000 --gid app app
 
 WORKDIR $AZK_HOME
 CMD ["./run.sh"]
